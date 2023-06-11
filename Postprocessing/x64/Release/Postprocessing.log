@@ -1,0 +1,383 @@
+﻿  Compiling CUDA source file kernel.cu...
+  Compiling CUDA source file Postprocessing.cu...
+  
+  C:\df\Postprocessing_Cuda\Postprocessing>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\bin\HostX64\x64" -x cu   -IC:\df\Postprocessing_Cuda\UniversalHookX\src\Thirdparty -IC:\df\Postprocessing_Cuda\src\Thirdparty -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7\include"     --keep-dir x64\Release  -maxrregcount=0  --machine 64 --compile -cudart static    -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /FdC:\df\Postprocessing_Cuda\bin\Postprocessing.pdb /FS   /MD " -o C:\df\Postprocessing_Cuda\Postprocessing\x64\Release\kernel.cu.obj "C:\df\Postprocessing_Cuda\Postprocessing\kernel.cu" 
+  
+  C:\df\Postprocessing_Cuda\Postprocessing>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\bin\HostX64\x64" -x cu   -IC:\df\Postprocessing_Cuda\UniversalHookX\src\Thirdparty -IC:\df\Postprocessing_Cuda\src\Thirdparty -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.7\include"     --keep-dir x64\Release  -maxrregcount=0  --machine 64 --compile -cudart static    -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /FdC:\df\Postprocessing_Cuda\bin\Postprocessing.pdb /FS   /MD " -o C:\df\Postprocessing_Cuda\Postprocessing\x64\Release\Postprocessing.cu.obj "C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu" 
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu(91): warning #177-D: variable "currentIndex" was declared but never referenced
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(94): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec2.hpp(143): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(99): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec3.hpp(176): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(97): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(98): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_vec4.hpp(249): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x2.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat2x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+  kernel.cu
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x3.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat3x4.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x2.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x3.hpp(36): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __device__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\ext\../detail/type_mat4x4.hpp(35): warning #20012-D: __host__ annotation is ignored on a function("mat") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(95): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __device__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(96): warning #20012-D: __host__ annotation is ignored on a function("vec") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __device__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+C:\df\Postprocessing_Cuda\UniversalHookX\src\ThirdParty\glm\detail/type_vec1.hpp(132): warning #20012-D: __host__ annotation is ignored on a function("operator=") that is explicitly defaulted on its first declaration
+  
+  Postprocessing.cu
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cuh(24): warning C4244: '초기화 중': 'T'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cuh(24): warning C4244: '초기화 중': 'T'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cuh(24): warning C4244: '초기화 중': 'T'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cuh(24): warning C4244: '초기화 중': 'T'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cuh(24): warning C4244: '초기화 중': 'T'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cuh(24): warning C4244: '초기화 중': 'T'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu(212): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu(212): warning C4244: '=': 'float'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu(213): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu(213): warning C4244: '=': 'float'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu(214): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\df\Postprocessing_Cuda\Postprocessing\Postprocessing.cu(214): warning C4244: '=': 'float'에서 'unsigned char'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Postprocessing.vcxproj -> C:\df\Postprocessing_Cuda\bin\Postprocessing.lib

@@ -18,40 +18,47 @@
 
 #include "GLFW/glfw3.h"
 
+#include "Postprocessing/Postprocessing.cuh"
 
 
 #pragma comment(lib,"opengl32.lib")
 //#pragma comment(lib,"glu32.lib")
 #pragma comment(lib,"glfw3.lib")
+#pragma comment(lib,"Postprocessing.lib")
+
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 
 #define GL_COLOR_ATTACHMENT0 0x8CE0
 #define GL_RGB_INTEGER 0x8D98
 
-#define WIDTH 1024
-#define HEIGHT 768
+
+
+//----- ½Ã°£ °ü·Ã -----
+float Time::last_frameTime = 0.0f;
+float Time::deltaTime = 0.0f;
+float Time::fps_accTime = 0.0;
+int Time::fps = 0;
+int Time::last_fps = 0;
 
 
 
 static std::add_pointer_t<BOOL WINAPI(HDC)> oWglSwapBuffers;
 
 bool isInitGlfw = false;
-GLuint texture;
 
-struct SelectionPixelIdInfo {
-    unsigned char R = 0;
-    unsigned char G = 0;
-    unsigned char B = 0;
 
-    //SelectionPixelIdInfo();
-    //SelectionPixelIdInfo(uint32_t model_id_, uint32_t mesh_id_);
-};
 
-SelectionPixelIdInfo zeroScreenData[WIDTH * HEIGHT];
-SelectionPixelIdInfo screenData[WIDTH * HEIGHT];
+uchar3 outputData[WIDTH * HEIGHT] = {};
+uchar3 screenData[WIDTH * HEIGHT];
+
+OperationMode operationMode = OperationMode::CPU;
+Filter filter = Filter::None;
 
 static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
     static HGLRC oldContext = wglGetCurrentContext();
     static HGLRC newContext = wglCreateContext(Hdc);
+    Time::time_update();
     if (!isInitGlfw)
     {
         glfwInit();
@@ -86,24 +93,6 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
         glDisable(GL_DEPTH_TEST);
     }
 
-    bool isTexture = false;
-    if (isTexture)
-    {
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glReadPixels(0, 0, WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, screenData);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, WIDTH, HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, screenData);
-
-        glBegin(GL_QUADS);
-        glTexCoord2f(0, 0);
-        glVertex2f(0, 0);
-        glTexCoord2f(1, 0);
-        glVertex2f(WIDTH, 0);
-        glTexCoord2f(1, 1);
-        glVertex2f(WIDTH, HEIGHT);
-        glTexCoord2f(0, 1);
-        glVertex2f(0, HEIGHT);
-        glEnd();
-    }
     //draw ·ºÅÞ±Û
     bool isInitRect = false;
     if(isInitRect)
@@ -126,11 +115,39 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
     {
         glReadPixels(0, 0, WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, screenData);
 
-        //LOG("Pixel : %d %d %d %d %d %d\n", screenData[100].R, screenData[200].R, screenData[300].R, screenData[300].R, screenData[301].R, screenData[323].R);
-        // Write the modified pixel data back to the frame buffer
-        //glDrawPixels(WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, pixelData);
+        //ÇÈ¼¿ µÚÁý±â
+        {
+            for (int i = 0; i < HEIGHT; i++)
+            {
+                for (int j = 0; j < WIDTH; j++)
+                {
+                    int original_index = i * WIDTH + j;
+                    int rotated_index = (HEIGHT - 1 - i) * WIDTH + (WIDTH - 1 - j);
+                    outputData[rotated_index] = screenData[original_index];
+                }
+            }
 
-        //ÀÌ°ÔÁøÂ¥
+            for (int i = 0; i < HEIGHT; i++)
+            {
+                for (int j = 0; j < WIDTH; j++)
+                {
+                    int symmetricJ = i * WIDTH + WIDTH - j - 1;
+                    int original_index = i * WIDTH + j;
+                    screenData[original_index] = outputData[symmetricJ];
+                }
+            }
+        }
+
+      Postprocessing::set_postprocessing(screenData, outputData, operationMode,filter);
+
+
+       // LOG("Pixel : %d %d %d %d %d %d\n", screenData[100].x, screenData[200].x, screenData[300].x, screenData[300].x, screenData[301].x, screenData[323].x);
+
+
+
+
+
+        //ÇÈ¼¿ ·»´õ¸µ
         bool isReal = true;
         for (int i = 0; i < HEIGHT; i ++)
         {
@@ -139,35 +156,12 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
                 
                 glBegin(GL_POINTS);
                 int index = WIDTH * i + j;
-                /*if (screenData[index].B > 40)
-                {
-                    screenData[index] = { 0,0,0 };
-                }*/
-                glColor3ub(screenData[index].R, screenData[index].G, screenData[index].B);
+                //glColor3ub(outputData[index].r, outputData[index].g, outputData[index].b);
+                glColor3ub(outputData[index].x, outputData[index].y, outputData[index].z);
                 glVertex2i(j, i);
                 glEnd();
-                /*if (screenData[index].A < 255)
-                {
-                    LOG("Pixel : %d\n", screenData[index].A);
-                }*/
             }
         }
-
-
-        // Delete the allocated pixel data buffer
-        //delete[] pixelData;
-
-      
-
-        //GLubyte pixelData[WIDTH * HEIGHT * 4] = { 0, }; // RGB values for each pixel
-       //glDrawPixels(WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, &screenData[0]);
-
-
-        //glClear(GL_COLOR_BUFFER_BIT);
-
-
-       // glDrawPixels(40, 40, GL_RGBA, GL_UNSIGNED_BYTE, screenData);
-
     }
     //RestoreGL
     {
@@ -175,38 +169,10 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
         glPopAttrib();
     }
 
-
-
-
-
-    //glfwSwapBuffers(NULL);
-
-
-
-
-
-
-    bool isInit2 = false;
-    if(isInit2)
-    {
-        int screenWidth = 10; //Width of the screen
-        int screenHeight = 10; // Height of the screen
-
-        // Read the pixel data from the frame buffer
-        GLubyte* pixelData = new GLubyte[screenWidth * screenHeight * 3]; // RGB values for each pixel
-        glReadPixels(0, 0, screenWidth, screenHeight, GL_RGBA, GL_UNSIGNED_BYTE, pixelData);
-        LOG("Pixeld : %d\n", pixelData[0]);
-        delete pixelData;
-    }
-
-    //{
-    //    SelectionPixelIdInfo Pixel;
-    //    glReadPixels(0, 0, 100, 100, GL_RGB, GL_UNSIGNED_BYTE, &Pixel);
-    //    LOG("Pixel : %d %d %d\n", Pixel.R, Pixel.G, Pixel.B);
-    //}
    
    // glReadBuffer(GL_NONE);
     wglMakeCurrent(Hdc, oldContext);
+
     if (!H::bShuttingDown && ImGui::GetCurrentContext()) {
         if (!ImGui::GetIO().BackendRendererUserData)
             ImGui_ImplOpenGL3_Init();
@@ -215,11 +181,123 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        Menu::Render();
+       // Menu::Render();
+        bool isRender = true;
+        if(isRender)
+        {
+            static bool* p_open = nullptr;
+
+            static bool no_titlebar = false;
+            static bool no_scrollbar = false;
+            static bool no_menu = false;
+            static bool no_move = false;
+            static bool no_resize = false;
+            static bool no_collapse = false;
+            static bool no_close = false;
+            static bool no_nav = false;
+            static bool no_background = false;
+            static bool no_bring_to_front = false;
+            static bool unsaved_document = false;
+
+            ImGuiWindowFlags window_flags = 0;
+            if (no_titlebar)        window_flags |= ImGuiWindowFlags_NoTitleBar;
+            if (no_scrollbar)       window_flags |= ImGuiWindowFlags_NoScrollbar;
+            if (no_menu)           window_flags |= ImGuiWindowFlags_MenuBar;
+            if (no_move)            window_flags |= ImGuiWindowFlags_NoMove;
+            if (no_resize)          window_flags |= ImGuiWindowFlags_NoResize;
+            if (no_collapse)        window_flags |= ImGuiWindowFlags_NoCollapse;
+            if (no_nav)             window_flags |= ImGuiWindowFlags_NoNav;
+            if (no_background)      window_flags |= ImGuiWindowFlags_NoBackground;
+            if (no_bring_to_front)  window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus;
+            if (unsaved_document)   window_flags |= ImGuiWindowFlags_UnsavedDocument;
+            if (no_close)           p_open = NULL; // Don't pass our bool* to Begin
+            const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
+            ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x + 650, main_viewport->WorkPos.y + 20), ImGuiCond_FirstUseEver);
+            ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
+
+            // Main body of the Demo window starts here.
+
+
+            //ÄÁÅÙÃ÷ ·»´õ¸µ
+            {
+                if (!ImGui::Begin("Postprocessing", p_open, window_flags))
+                {
+                    // Early out if the window is collapsed, as an optimization.
+                    ImGui::End();
+                    // return;
+                }
+                ImGui::Text("Operation Mode");
+                //ImGui::AlignTextToFramePadding();
+                static int select_operationMode = 0;
+                ImGui::RadioButton("CPU", &select_operationMode, 0); ImGui::SameLine();
+                ImGui::RadioButton("GPU", &select_operationMode, 1);
+                operationMode = static_cast<OperationMode>(select_operationMode);
+
+                static int select_filter = 0;
+                ImGui::Text("Filter");
+                ImGui::RadioButton("None", &select_filter, 0); ImGui::SameLine();
+                ImGui::RadioButton("Gray", &select_filter, 1); ImGui::SameLine();
+                ImGui::RadioButton("Sobel", &select_filter, 2);
+                filter = static_cast<Filter>(select_filter);
+                ImGui::End();
+            }
+
+            //¿À¹ö·¹ÀÌ ·»´õ¸µ
+            {
+                static int location = 0;
+                ImGuiIO& io = ImGui::GetIO();
+                ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
+                if (location >= 0)
+                {
+                    const float PAD = 10.0f;
+                    const ImGuiViewport* viewport = ImGui::GetMainViewport();
+                    ImVec2 work_pos = viewport->WorkPos; // Use work area to avoid menu-bar/task-bar, if any!
+                    ImVec2 work_size = viewport->WorkSize;
+                    ImVec2 window_pos, window_pos_pivot;
+                    window_pos.x = (location & 1) ? (work_pos.x + work_size.x - PAD) : (work_pos.x + PAD);
+                    window_pos.y = (location & 2) ? (work_pos.y + work_size.y - PAD) : (work_pos.y + PAD);
+                    window_pos_pivot.x = (location & 1) ? 1.0f : 0.0f;
+                    window_pos_pivot.y = (location & 2) ? 1.0f : 0.0f;
+                    ImGui::SetNextWindowPos(window_pos, ImGuiCond_Always, window_pos_pivot);
+                    window_flags |= ImGuiWindowFlags_NoMove;
+                }
+                else if (location == -2)
+                {
+                    // Center window
+                    ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+                    window_flags |= ImGuiWindowFlags_NoMove;
+                }
+                ImGui::SetNextWindowBgAlpha(0.35f); // Transparent background
+                if (ImGui::Begin("Postprocessing overlay", p_open, window_flags))
+                {
+                    ImGui::Text("Postprocessing overlay");
+                    ImGui::Text("FPS: %d\n", Time::last_fps);
+                    //ImGui::Separator();
+                    //if (ImGui::IsMousePosValid())
+                    //    ImGui::Text("Mouse Position: (%.1f,%.1f)", io.MousePos.x, io.MousePos.y);
+                    //else
+                    //    ImGui::Text("Mouse Position: <invalid>");
+                    if (ImGui::BeginPopupContextWindow())
+                    {
+                        if (ImGui::MenuItem("Custom", NULL, location == -1)) location = -1;
+                        if (ImGui::MenuItem("Center", NULL, location == -2)) location = -2;
+                        if (ImGui::MenuItem("Top-left", NULL, location == 0)) location = 0;
+                        if (ImGui::MenuItem("Top-right", NULL, location == 1)) location = 1;
+                        if (ImGui::MenuItem("Bottom-left", NULL, location == 2)) location = 2;
+                        if (ImGui::MenuItem("Bottom-right", NULL, location == 3)) location = 3;
+                        if (p_open && ImGui::MenuItem("Close")) *p_open = false;
+                        ImGui::EndPopup();
+                    }
+                }
+                ImGui::End();
+            }
+        }
+
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
+
     return oWglSwapBuffers(Hdc);
 }
 
@@ -235,9 +313,8 @@ namespace GL {
 
                 // Hook
                 LOG("[+] OpenGL32: fnWglSwapBuffers: 0x%p\n", fnWglSwapBuffers);
-
-                // Start Cuda
-
+                Postprocessing::init();
+                // Start Cuda-
                 static MH_STATUS wsbStatus = MH_CreateHook(reinterpret_cast<void**>(fnWglSwapBuffers), &hkWglSwapBuffers, reinterpret_cast<void**>(&oWglSwapBuffers));
 
                 MH_EnableHook(fnWglSwapBuffers);
@@ -254,6 +331,8 @@ namespace GL {
                 ImGui_ImplWin32_Shutdown( );
 
             ImGui::DestroyContext( );
+
+            Postprocessing::release();
         }
     }
 } // namespace GL
@@ -264,3 +343,28 @@ namespace GL {
     void Unhook( ) { }
 } // namespace GL
 #endif
+
+float Time::time_acc()
+{
+    return 0.0f;
+}
+
+float Time::time_delta()
+{
+    return deltaTime;
+}
+
+void Time::time_update()
+{
+    float current_frameTime = (float)glfwGetTime();
+    deltaTime = current_frameTime - last_frameTime;
+    last_frameTime = current_frameTime;
+    fps_accTime += deltaTime;
+    fps++;
+    if (fps_accTime > 1.f)
+    {
+        fps_accTime = 0.f;
+        last_fps = fps;
+        fps = 0;
+    }
+}

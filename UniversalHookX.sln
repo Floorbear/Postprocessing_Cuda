@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UniversalHookX", "UniversalHookX\UniversalHookX.vcxproj", "{3E2248F5-1C63-4DEE-A8AE-76830819E4A4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0339A706-B7B3-4D16-B890-5271D5F3E576} = {0339A706-B7B3-4D16-B890-5271D5F3E576}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Postprocessing", "Postprocessing\Postprocessing.vcxproj", "{0339A706-B7B3-4D16-B890-5271D5F3E576}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,18 @@ Global
 		{3E2248F5-1C63-4DEE-A8AE-76830819E4A4}.Release|x64.Build.0 = Release|x64
 		{3E2248F5-1C63-4DEE-A8AE-76830819E4A4}.Release|x86.ActiveCfg = Release|Win32
 		{3E2248F5-1C63-4DEE-A8AE-76830819E4A4}.Release|x86.Build.0 = Release|Win32
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Debug|Win32.ActiveCfg = Debug|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Debug|Win32.Build.0 = Debug|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Debug|x64.ActiveCfg = Debug|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Debug|x64.Build.0 = Debug|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Debug|x86.ActiveCfg = Debug|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Debug|x86.Build.0 = Debug|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Release|Win32.ActiveCfg = Release|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Release|Win32.Build.0 = Release|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Release|x64.ActiveCfg = Release|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Release|x64.Build.0 = Release|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Release|x86.ActiveCfg = Release|x64
+		{0339A706-B7B3-4D16-B890-5271D5F3E576}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
