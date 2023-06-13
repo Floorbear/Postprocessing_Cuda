@@ -18,3 +18,7 @@ public:
     static int fps;
     static int last_fps;
 };
+
+static void set_ortho(const HDC& Hdc, const HGLRC& newContext);
+
+static void draw_testRect();

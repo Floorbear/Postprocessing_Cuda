@@ -53,7 +53,6 @@ uchar3 outputData[WIDTH * HEIGHT] = {};
 uchar3 screenData[WIDTH * HEIGHT];
 
 OperationMode operationMode = OperationMode::CPU;
-Filter filter = Filter::None;
 
 static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
     static HGLRC oldContext = wglGetCurrentContext();
@@ -61,6 +60,7 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
     Time::time_update();
     if (!isInitGlfw)
     {
+        isInitGlfw = true;
         glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -68,46 +68,10 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
 
         newContext = wglCreateContext(Hdc);
         wglMakeCurrent(Hdc, newContext);
-        //glGenTextures(1, &texture);
-        //glBindTexture(GL_TEXTURE_2D, texture);
-        //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, WIDTH, HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, screenData);
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        //glEnable(GL_TEXTURE_2D);
-        //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     }
 
-    //SetupOrtho
-    {
-        wglMakeCurrent(Hdc, newContext);
-        glPushAttrib(GL_ALL_ATTRIB_BITS);
-        glPushMatrix();
-        GLint viewport[4];
-        glGetIntegerv(GL_VIEWPORT, viewport);
-        glViewport(0, 0, viewport[2], viewport[3]);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, viewport[2], viewport[3], 0, -1, 1);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-
-        glDisable(GL_DEPTH_TEST);
-    }
-
-    //draw 렉텡글
-    bool isInitRect = false;
-    if(isInitRect)
-    {
-        glColor3f(1.0, 0.0, 0.0);
-        glLineWidth(30);
-
-
-        glBegin(GL_QUADS);
-        glVertex2i(50, 90);           // //왼쪽 아래
-        glVertex2i(100, 90);          // 오른쪽 아래
-            glVertex2i(100, 150);     //    오른쪽 위
-            glVertex2i(50, 150);      //     왼쪽 위
-        glEnd();
-    }
+    //좌표계 설정
+    set_ortho(Hdc, newContext);
 
 
     bool isInit1 = true;
@@ -115,53 +79,27 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
     {
         glReadPixels(0, 0, WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, screenData);
 
-        //픽셀 뒤집기
-        {
-            for (int i = 0; i < HEIGHT; i++)
-            {
-                for (int j = 0; j < WIDTH; j++)
-                {
-                    int original_index = i * WIDTH + j;
-                    int rotated_index = (HEIGHT - 1 - i) * WIDTH + (WIDTH - 1 - j);
-                    outputData[rotated_index] = screenData[original_index];
-                }
-            }
 
-            for (int i = 0; i < HEIGHT; i++)
-            {
-                for (int j = 0; j < WIDTH; j++)
-                {
-                    int symmetricJ = i * WIDTH + WIDTH - j - 1;
-                    int original_index = i * WIDTH + j;
-                    screenData[original_index] = outputData[symmetricJ];
-                }
-            }
-        }
 
-      Postprocessing::set_postprocessing(screenData, outputData, operationMode,filter);
+        for (int mode = 0; mode < Postprocessing::postprocessingFunc.size(); mode++)
+            {
+	            for (int filter = 0; filter < Postprocessing::postprocessingFunc[mode].size(); filter++)
+	            {
+		            if ((Postprocessing::isEnable_postprocessing[mode][filter]) == true)
+		            {
+                        Postprocessing::set_postprocessing(screenData, outputData, 
+                            static_cast<OperationMode>(mode), static_cast<Filter>(filter));
+                        Postprocessing::set_postprocessing(outputData, screenData,
+                            OperationMode::CPU, Filter::None);
+		            }
+	            }
+            }
 
 
        // LOG("Pixel : %d %d %d %d %d %d\n", screenData[100].x, screenData[200].x, screenData[300].x, screenData[300].x, screenData[301].x, screenData[323].x);
 
-
-
-
-
-        //픽셀 렌더링
-        bool isReal = true;
-        for (int i = 0; i < HEIGHT; i ++)
-        {
-            for (int j = 0; j < WIDTH; j++)
-            {
-                
-                glBegin(GL_POINTS);
-                int index = WIDTH * i + j;
-                //glColor3ub(outputData[index].r, outputData[index].g, outputData[index].b);
-                glColor3ub(outputData[index].x, outputData[index].y, outputData[index].z);
-                glVertex2i(j, i);
-                glEnd();
-            }
-        }
+        glDrawPixels(WIDTH, HEIGHT, GL_RGB,
+            GL_UNSIGNED_BYTE, outputData);
     }
     //RestoreGL
     {
@@ -181,7 +119,7 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-       // Menu::Render();
+        //Menu::Render();
         bool isRender = true;
         if(isRender)
         {
@@ -212,8 +150,8 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
             if (unsaved_document)   window_flags |= ImGuiWindowFlags_UnsavedDocument;
             if (no_close)           p_open = NULL; // Don't pass our bool* to Begin
             const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
-            ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x + 650, main_viewport->WorkPos.y + 20), ImGuiCond_FirstUseEver);
-            ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
+            ImGui::SetNextWindowPos(ImVec2(main_viewport->WorkPos.x + 630, main_viewport->WorkPos.y + 20), ImGuiCond_FirstUseEver);
+            ImGui::SetNextWindowSize(ImVec2(390, 350), ImGuiCond_FirstUseEver);
 
             // Main body of the Demo window starts here.
 
@@ -232,13 +170,75 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
                 ImGui::RadioButton("CPU", &select_operationMode, 0); ImGui::SameLine();
                 ImGui::RadioButton("GPU", &select_operationMode, 1);
                 operationMode = static_cast<OperationMode>(select_operationMode);
+                //이전 모드 전부 필터 전부 Off
+                int off_operationMode = 0;
+                if (select_operationMode == 0)
+                    off_operationMode = 1;
+                else if (select_operationMode == 1)
+                    off_operationMode = 0;
+                for (int i = 0; i < static_cast<int>(Filter::Max); i++)
+                {
+                    Postprocessing::isEnable_postprocessing[off_operationMode][i] = false;
+                }
 
-                static int select_filter = 0;
+
+                static bool select_filter[static_cast<int>(Filter::Max)] = {false,};
                 ImGui::Text("Filter");
-                ImGui::RadioButton("None", &select_filter, 0); ImGui::SameLine();
-                ImGui::RadioButton("Gray", &select_filter, 1); ImGui::SameLine();
-                ImGui::RadioButton("Sobel", &select_filter, 2);
-                filter = static_cast<Filter>(select_filter);
+                //ImGui::Checkbox("None", &select_filter[static_cast<int>(Filter::None)]); ImGui::SameLine();
+                ImGui::Checkbox("Contrast", &select_filter[static_cast<int>(Filter::Contrast)]); ImGui::SameLine();
+                ImGui::Checkbox("Saturation", &select_filter[static_cast<int>(Filter::Saturation)]); ImGui::SameLine();
+                ImGui::Checkbox("Brightness", &select_filter[static_cast<int>(Filter::Brightness)]);
+                ImGui::Checkbox("Gray", &select_filter[static_cast<int>(Filter::Gray)]); ImGui::SameLine();
+                ImGui::Checkbox("Sobel", &select_filter[static_cast<int>(Filter::Sobel)]); ImGui::SameLine();
+                ImGui::Checkbox("Gaussian Blur", &select_filter[static_cast<int>(Filter::Gaussian_Blur)]);
+                ImGui::Checkbox("Sharpness", &select_filter[static_cast<int>(Filter::Sharpness)]);
+
+                for (int i = 0; i < static_cast<int>(Filter::Max); i++)
+                {
+                    if(select_filter[i])
+                        Postprocessing::isEnable_postprocessing[select_operationMode][i] = true;
+                    else
+                        Postprocessing::isEnable_postprocessing[select_operationMode][i] = false; 
+
+                    if(i == 0) // None 필터는 무조건 true
+                        Postprocessing::isEnable_postprocessing[select_operationMode][i] = true;
+                }
+
+                ImGui::Text("Filter Option");
+
+                //옵션 렌더링
+                if (select_filter[static_cast<int>(Filter::Contrast)])
+                {
+                    ImGui::Text("Contrast Option");
+                    ImGui::SliderFloat("Contrast Strength", &Postprocessing::contrast_threshold, -0.999f, 1.f);
+                }
+                if (select_filter[static_cast<int>(Filter::Saturation)])
+                {
+                    ImGui::Text("Saturation Option");
+                    ImGui::SliderFloat("Saturation Strength", &Postprocessing::saturation_threshold, 0.f, 1.f);
+                }
+                if (select_filter[static_cast<int>(Filter::Brightness)])
+                {
+                    ImGui::Text("Brightness Option");
+                    ImGui::SliderFloat("Brightness Strength", &Postprocessing::brightness_threshold, 0.f, 1.f);
+                }
+                if (select_filter[static_cast<int>(Filter::Sobel)])
+                {
+                    ImGui::Text("Sobel Option");
+                    ImGui::SliderInt("threshold", &Postprocessing::sobel_threshold, 0, 255);
+                }
+                if (select_filter[static_cast<int>(Filter::Gaussian_Blur)])
+                {
+                    ImGui::Text("Gaussian Blur Option");
+                    ImGui::SliderInt("Noise", &Postprocessing::gaussian_blur_threshold, 1, 256);
+                }
+                if (select_filter[static_cast<int>(Filter::Sharpness)])
+                {
+                    ImGui::Text("Sharpness Blur Option");
+                    ImGui::SliderFloat("Sharpness Strength", &Postprocessing::sharpness_threshold, 0.f, 50.f);
+                }
+                
+
                 ImGui::End();
             }
 
@@ -301,6 +301,36 @@ static BOOL WINAPI hkWglSwapBuffers(HDC Hdc) {
     return oWglSwapBuffers(Hdc);
 }
 
+void draw_testRect()
+{
+    glColor3f(1.0, 0.0, 0.0);
+    glLineWidth(30);
+
+
+    glBegin(GL_QUADS);
+    glVertex2i(50, 90);           // //왼쪽 아래
+    glVertex2i(100, 90);          // 오른쪽 아래
+    glVertex2i(100, 150);     //    오른쪽 위
+    glVertex2i(50, 150);      //     왼쪽 위
+    glEnd();
+}
+
+void set_ortho(const HDC& Hdc, const HGLRC& newContext)
+{
+    wglMakeCurrent(Hdc, newContext);
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glPushMatrix();
+    GLint viewport[4];
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    glViewport(0, 0, viewport[2], viewport[3]);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, viewport[2], viewport[3], 0, -1, 1);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glDisable(GL_DEPTH_TEST);
+}
+
 namespace GL {
     void Hook(HWND hwnd) {
         HMODULE openGL32 = GetModuleHandleA("opengl32.dll");
@@ -315,7 +345,9 @@ namespace GL {
                 LOG("[+] OpenGL32: fnWglSwapBuffers: 0x%p\n", fnWglSwapBuffers);
                 Postprocessing::init();
                 // Start Cuda-
-                static MH_STATUS wsbStatus = MH_CreateHook(reinterpret_cast<void**>(fnWglSwapBuffers), &hkWglSwapBuffers, reinterpret_cast<void**>(&oWglSwapBuffers));
+                static MH_STATUS wsbStatus = MH_CreateHook
+                (reinterpret_cast<void**>(fnWglSwapBuffers), &hkWglSwapBuffers,
+                    reinterpret_cast<void**>(&oWglSwapBuffers));
 
                 MH_EnableHook(fnWglSwapBuffers);
             }

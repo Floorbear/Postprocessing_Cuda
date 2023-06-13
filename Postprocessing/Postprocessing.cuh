@@ -63,8 +63,13 @@ enum class OperationMode
 enum class Filter
 {
 	None,
+	Contrast,
+	Saturation,
+	Brightness,
 	Gray,
 	Sobel,
+	Gaussian_Blur,
+	Sharpness,
 	Max
 };
 
@@ -79,5 +84,16 @@ public:
 	static void set_postprocessing(uchar3* _targetData, uchar3* _desData, OperationMode _mode, Filter _filter);
 
 	static std::vector<std::vector<std::function<void(uchar3* _targetData, uchar3* _desData)>>> postprocessingFunc;
+	static std::vector<std::vector<bool>> isEnable_postprocessing;
+
+
+	// ----- Option ------
+	static int sobel_threshold;
+	static int gaussian_blur_threshold;
+	static float sharpness_threshold;
+	static float contrast_threshold;
+	static float saturation_threshold;
+	static float brightness_threshold;
+
 };
 
